@@ -440,3 +440,128 @@ body {
         width: 100%;
     }
 }
+
+/* =============================================== */
+/* OIMU Project Detail Section (UX/UI)           */
+/* =============================================== */
+.project-section-oimu {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #F4EEE0; /* Requested background color */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(80px, 10vh, 120px) clamp(40px, 8vw, 100px);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.oimu-content-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 1600px;
+    gap: clamp(40px, 6vw, 100px);
+    align-items: flex-start;
+}
+
+/* --- Left Column: Images --- */
+.oimu-left-col {
+    flex-basis: 65%; /* 이미지 영역 넓게 설정 */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Main Image */
+.oimu-main-image {
+    width: 100%;
+}
+.oimu-main-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Sub Images Wrapper */
+.oimu-sub-images {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+
+.oimu-sub-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    width: 100%;
+}
+
+.oimu-sub-row img {
+    width: calc(50% - 15px);
+    height: auto;
+}
+
+/* --- Right Column: Text and Title --- */
+.oimu-right-col {
+    flex-basis: 35%; /* 텍스트 영역 좁게 설정 */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: sticky; /* 스크롤 시 오른쪽에 고정되도록 sticky 사용 */
+    top: 50px;
+}
+
+.oimu-title {
+    font-family: 'Hilmar Regular', sans-serif; 
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    color: #8C4B59; /* 시안에 맞춰 톤다운된 레드/버건디 계열 */
+    margin-bottom: 5px;
+    line-height: 1;
+}
+
+.oimu-tag {
+    /* 기존 uxui-tag 스타일 재활용 */
+    display: inline-block;
+    padding: clamp(5px, 1vh, 10px) clamp(15px, 2vw, 25px);
+    border-radius: 50px;
+    border: 2px solid #8C4B59;
+    color: #8C4B59;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.oimu-text-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+    .project-section-oimu {
+        padding: 60px 20px;
+    }
+    .oimu-content-wrapper {
+        flex-direction: column;
+        gap: 60px;
+    }
+    .oimu-left-col, .oimu-right-col {
+        flex-basis: 100%;
+    }
+    .oimu-right-col {
+        position: static; /* 모바일에서는 sticky 해제 */
+        top: auto;
+    }
+    .oimu-sub-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .oimu-sub-row img {
+        width: 100%;
+    }
+}
