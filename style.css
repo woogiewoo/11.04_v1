@@ -372,12 +372,19 @@ body {
     gap: 20px;
 }
 
+.uxui-text-image {
+    width: 70%; /* 부모 요소 너비의 80%로 설정하여 크기를 줄입니다. */
+    height: auto; /* 이미지 비율을 유지합니다. */
+    align-self: flex-start; /* 왼쪽 정렬을 유지합니다. */
+}
+
 /* Right side (Images - The main visual focus) */
 .uxui-right-col {
     flex-basis: 70%; /* 이미지 영역을 더 넓게 설정 */
     display: flex;
     flex-direction: column;
     gap: 20px;
+    align-items: flex-end; /* 자식 요소들을 오른쪽으로 정렬합니다. */
 }
 
 /* Top images wrapper for lush 2 and 3 */
@@ -386,6 +393,8 @@ body {
     gap: 20px;
     width: 100%;
     justify-content: space-between;
+    /* 화면 너비에 비례하여 위치를 위로 조정합니다. (1920px 기준 약 -150px) */
+    transform: translateY(-14vw); 
 }
 .uxui-top-images img {
     /* 두 이미지가 나란히 오도록 너비 설정 */
@@ -396,8 +405,11 @@ body {
 
 /* Large bottom image for lush 1 */
 .uxui-main-image {
-    width: 100%;
-    /* 이미지 자체가 래퍼 역할을 할 경우, 여기에 스타일을 적용합니다. */
+    /* 부모 컨테이너보다 크게 설정하여 이미지를 키웁니다. */
+    width: 115%;
+    /* 화면 너비에 비례하여 위치를 위로 조정합니다. */
+    /* translateX를 사용하여 오른쪽 정렬을 맞춥니다. */
+    transform: translateX(1.9vw) translateY(-14vw);
 }
 .uxui-main-image img {
     width: 100%;
@@ -416,6 +428,11 @@ body {
     }
     .uxui-top-images {
         flex-direction: column;
+        /* 모바일에서는 위치 조정을 초기화하여 레이아웃이 깨지지 않도록 합니다. */
+        transform: translateY(0);
+    }
+    .uxui-main-image {
+        transform: translate(0, 0);
     }
     .uxui-top-images img {
         width: 100%;
