@@ -314,13 +314,12 @@ body {
 /* =============================================== */
 .project-section-uxui {
     width: 100%;
-    min-height: 100vh;
     background-color: #B6A3FA; /* Requested background color */
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: clamp(60px, 8vh, 100px) clamp(20px, 5vw, 60px);
+    padding: 80px clamp(20px, 5vw, 60px) 40px; /* 상단 80px, 하단 40px 패딩으로 조정합니다. */
     box-sizing: border-box;
     overflow: hidden;
 }
@@ -410,6 +409,8 @@ body {
     /* 화면 너비에 비례하여 위치를 위로 조정합니다. */
     /* translateX를 사용하여 오른쪽 정렬을 맞춥니다. */
     transform: translateX(1.9vw) translateY(-14vw);
+    /* transform으로 인해 생긴 하단 빈 공간을 음수 마진으로 제거합니다. */
+    margin-bottom: -14vw;
 }
 .uxui-main-image img {
     width: 100%;
@@ -433,6 +434,7 @@ body {
     }
     .uxui-main-image {
         transform: translate(0, 0);
+        margin-bottom: 0; /* 모바일에서는 음수 마진을 초기화합니다. */
     }
     .uxui-top-images img {
         width: 100%;
