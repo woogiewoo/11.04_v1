@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 313.83 254.51">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2b3c44;
+      }
+
+      .cls-2 {
+        font-family: Pretendard-Bold-KSCpc-EUC-H, Pretendard;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .cls-3 {
+        font-family: Pretendard-Light-KSCpc-EUC-H, Pretendard;
+        font-size: 16px;
+        font-weight: 300;
+      }
+
+      .cls-4 {
+        fill: #e4a57f;
+      }
+    </style>
+  </defs>
+  <g id="Layer_2-2" data-name="Layer 2">
+    <g>
+      <text class="cls-1" transform="translate(17.97 17.13)"><tspan class="cls-2"><tspan x="0" y="0">Key skills:</tspan></tspan><tspan class="cls-3"><tspan x="0" y="40.8">Photoshop / Illustrator / Figma / VS Code</tspan></tspan><tspan class="cls-3"><tspan x="0" y="79.2">브랜드 아이덴티티 및 패키지 디자인</tspan></tspan><tspan class="cls-3"><tspan x="0" y="117.6">웹·앱 UI 리디자인 및 상세페이지 제작</tspan></tspan><tspan class="cls-3"><tspan x="0" y="156">협업 및 일정 조율 능력</tspan></tspan><tspan class="cls-3"><tspan x="0" y="194.4">시장조사와 소비자 데이터 분석 경험</tspan></tspan><tspan class="cls-3"><tspan x="0" y="232.8">새로운 도구와 트렌드를 빠르게 습득하는 학습력</tspan></tspan></text>
+      <circle class="cls-4" cx="3" cy="52.23" r="3"/>
+      <circle class="cls-4" cx="3" cy="90.56" r="3"/>
+      <circle class="cls-4" cx="3" cy="128.89" r="3"/>
+      <circle class="cls-4" cx="3" cy="167.22" r="3"/>
+      <circle class="cls-4" cx="3" cy="205.56" r="3"/>
+      <circle class="cls-4" cx="3" cy="243.89" r="3"/>
+    </g>
+  </g>
+</svg>

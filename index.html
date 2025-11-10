@@ -25,33 +25,22 @@
         <div class="content-wrapper">
             <!-- Left Column: Introduction -->
             <div class="intro-container">
-                <div class="intro-box">
-                    <div class="intro-content-wrapper">
-                        <!-- 그룹 1: 인사말 -->
-                        <div class="intro-group-greeting">
-                            <h2>
-                                <span>Hello!</span>
-                                <span>My name is Seonguk</span>
-                            </h2>
-                        </div>
-                        <!-- 그룹 2: 자기소개 -->
-                        <div class="intro-group-description">
-                            <p>저는 브랜드의 감성을 따뜻한 시각 언어로 풀어내는 시각디자이너입니다.</p>
-                            <p>아이덴티티를 구축하고, 캐릭터와 패키지를 통해 브랜드의 스토리를 감성적으로 전하는 작업을 합니다.</p>
-                        </div>
-                        <!-- 그룹 3: 보유 기술 -->
-                        <div class="intro-group-skills">
-                            <h3>Key skills:</h3>
-                            <ul>
-                                <li>Branding &amp; Identity</li>
-                                <li>Character Design</li>
-                                <li>UX / UI</li>
-                                <li>Illustration</li>
-                                <li>Package Design</li>
-                                <li>Print Design</li>
-                                <li>Web Design</li>
-                            </ul>
-                        </div>
+                <!-- intro-box를 배경 이미지와 콘텐츠 컨테이너로 분리 -->
+                <div class="intro-box-background">
+                    <img src="images/intro_box.png" alt="Intro box background image">
+                </div>
+                <div class="intro-box-content">
+                    <!-- 그룹 1: 인사말 -->
+                    <div class="intro-group-greeting">
+                        <img src="images/greeting.svg" alt="Greeting text as an image" class="intro-svg">
+                    </div>
+                    <!-- 그룹 2: 자기소개 -->
+                    <div class="intro-group-description">
+                        <img src="images/description.svg" alt="Description text as an image" class="intro-svg">
+                    </div>
+                    <!-- 그룹 3: 보유 기술 -->
+                    <div class="intro-group-skills">
+                        <img src="images/skills.svg" alt="Skills list as an image" class="intro-svg">
                     </div>
                 </div>
                 <div class="skill-icons">
@@ -87,5 +76,77 @@
             </div>
         </div>
     </section>
+
+    <!-- Lenis Smooth Scroll 라이브러리 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+    <!-- GSAP & ScrollTrigger 라이브러리 추가 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- GSAP 애니메이션 스크립트 -->
+    <script>
+        // --- Lenis Smooth Scroll 초기화 및 GSAP 연동 ---
+        const lenis = new Lenis();
+
+        lenis.on('scroll', ScrollTrigger.update);
+
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+
+        gsap.ticker.lagSmoothing(0);
+
+        // ScrollTrigger 플러그인 등록
+        gsap.registerPlugin(ScrollTrigger);
+
+        // --- 1. 랜딩 페이지 애니메이션 ---
+        const landingTl = gsap.timeline({
+            // 페이지 로드 후 약간의 지연 시간을 줌
+            delay: 0.3
+        });
+
+        landingTl
+            // 코너 라인들이 바깥에서 안으로 들어오며 나타남
+            .from(".corner-line.top-left", { duration: 0.8, x: -50, y: -50, autoAlpha: 0, ease: "power2.out" })
+            .from(".corner-line.top-right", { duration: 0.8, x: 50, y: -50, autoAlpha: 0, ease: "power2.out" }, "<") // 이전 애니메이션과 동시에 시작
+            // 메인 일러스트가 살짝 커지면서 나타남
+            .from(".main-illustration", { duration: 1.2, scale: 0.9, autoAlpha: 0, ease: "power2.out" }, "-=0.5")
+            // 포트폴리오 제목이 아래에서 위로 나타남
+            .from(".portfolio-text", { duration: 0.8, y: 30, autoAlpha: 0, ease: "power2.out" }, "-=0.8")
+            // 이름 바가 아래에서 위로 나타남
+            .from(".name-bar", { duration: 0.8, y: 30, autoAlpha: 0, ease: "power2.out" }, "<0.3");
+
+        // --- 2. 콘텐츠 섹션 스크롤 애니메이션 ---
+        const contentTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".content-section", // 애니메이션 시작을 유발할 요소
+                start: "top 60%",          // .content-section의 상단이 뷰포트 60% 지점에 닿을 때 시작
+                toggleActions: "play none none none", // 스크롤 시 한 번만 재생
+            }
+        });
+
+        // 애니메이션 순서 정의
+        contentTl
+            // 1. 배경 이미지 섹션이 서서히 나타남
+            .from(".content-section", { duration: 1, autoAlpha: 0 })
+            // 2. "Content" 타이틀이 오른쪽에서 나타남
+            .from(".content-title", { duration: 0.8, x: 100, autoAlpha: 0 }, "-=0.5")
+            // 3. 왼쪽 소개 박스 배경이 왼쪽에서 나타남
+            .from(".intro-box-background", { duration: 1, x: -100, autoAlpha: 0 }, "<")
+            // 3.1. intro-box 내부 SVG 이미지들이 순차적으로 나타남
+            .from(".intro-group-greeting", { duration: 0.7, y: 30, autoAlpha: 0 }, "-=0.5")
+            .from(".intro-group-description", { duration: 0.7, y: 30, autoAlpha: 0 }, "-=0.4")
+            .from(".intro-group-skills", { duration: 0.7, y: 30, autoAlpha: 0 }, "-=0.4")
+            // 4. 스킬 아이콘들이 아래에서 위로 순차적으로 나타남
+            // GSAP가 transform을 제어하므로, CSS 대신 스크립트에서 직접 위치/회전을 설정합니다.
+            .from(".skill-icons img:nth-child(1)", { duration: 0.5, y: 50, autoAlpha: 0, x: "10%", y: "-20%", rotation: -15 }, "-=0.5")
+            .from(".skill-icons img:nth-child(2)", { duration: 0.5, y: 50, autoAlpha: 0, x: "-10%", y: "10%", rotation: 10 }, "<0.2")
+            .from(".skill-icons img:nth-child(3)", { duration: 0.5, y: 50, autoAlpha: 0, x: "-10%", y: "-40%", rotation: 15 }, "<0.2")
+            .from(".skill-icons img:nth-child(4)", { duration: 0.5, y: 50, autoAlpha: 0, x: "-20%", y: "30%", rotation: -10 }, "<0.2")
+            // 5. 오른쪽 카테고리 아이템들이 아래에서 위로 순차적으로 나타남
+            .from(".category-item", { duration: 0.6, y: 50, autoAlpha: 0, stagger: 0.2 }, "<");
+
+    </script>
 </body>
 </html>
