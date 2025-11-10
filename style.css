@@ -59,14 +59,14 @@ body {
 .main-illustration { 
     width: 45vw; /* 화면보다 크게 설정 (예: 120vw). 이 값을 조절하세요. */
     max-width: none; /* max-width 제한 해제 */
-    position: absolute; /* body를 기준으로 위치를 잡기 위해 absolute로 변경 */
-    top: 43%; /* 화면 세로 중앙에서 시작 */
+    position: absolute;
+    top: 50%; /* 기준점을 세로 중앙으로 통일 */
     left: 50%; /* 화면 가로 중앙에서 시작 */
     z-index: 1; /* 쌓임 순서 1로 지정 */
-    transform: translate(-50%, -65%); /* 가로, 세로 중앙 정렬 및 위로 이동 */
+    transform: translate(-50%, -70%); /* Y값을 조절하여 위로 더 올립니다. */
 }
 .main-illustration:hover {
-    transform: translate(-50%, -65%) scale(1.02); /* 위치 유지하며 확대 */
+    transform: translate(-50%, -60%) scale(1.02); /* 위치 유지하며 확대 */
 }
 
 .portfolio-text { 
