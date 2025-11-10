@@ -308,3 +308,116 @@ body {
         font-size: 10vw;
     }
 }
+
+/* =============================================== */
+/* UX/UI Project Detail Section                  */
+/* =============================================== */
+.project-section-uxui {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #B6A3FA; /* Requested background color */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: clamp(60px, 8vh, 100px) clamp(20px, 5vw, 60px);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.uxui-header {
+    width: 100%;
+    max-width: 1600px;
+    margin-bottom: clamp(40px, 5vh, 70px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.uxui-title {
+    /* 기존 폰트 사용 */
+    font-family: 'Hilmar Regular', sans-serif; 
+    font-size: clamp(3rem, 7vw, 6rem);
+    color: #403F60;
+    margin: 0;
+    line-height: 1.1;
+    text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.4);
+}
+
+.uxui-tag {
+    display: inline-block;
+    padding: clamp(5px, 1vh, 10px) clamp(15px, 2vw, 25px);
+    border-radius: 50px;
+    border: 2px solid #403F60;
+    color: #403F60;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    font-weight: 600;
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+
+.uxui-content-layout {
+    display: flex;
+    width: 100%;
+    max-width: 1600px;
+    gap: clamp(30px, 5vw, 80px);
+    align-items: flex-start;
+}
+
+/* Left side (Text/Description) */
+.uxui-left-col {
+    flex-basis: 30%; /* 텍스트 영역을 더 좁게 설정 */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Right side (Images - The main visual focus) */
+.uxui-right-col {
+    flex-basis: 70%; /* 이미지 영역을 더 넓게 설정 */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Top images wrapper for lush 2 and 3 */
+.uxui-top-images {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: space-between;
+}
+.uxui-top-images img {
+    /* 두 이미지가 나란히 오도록 너비 설정 */
+    width: 50%; 
+    height: auto;
+    object-fit: cover;
+}
+
+/* Large bottom image for lush 1 */
+.uxui-main-image {
+    width: 100%;
+    /* 이미지 자체가 래퍼 역할을 할 경우, 여기에 스타일을 적용합니다. */
+}
+.uxui-main-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- Responsive Design for Project Page --- */
+@media (max-width: 1200px) {
+    .uxui-content-layout {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .uxui-left-col, .uxui-right-col {
+        flex-basis: 100%;
+    }
+    .uxui-top-images {
+        flex-direction: column;
+    }
+    .uxui-top-images img {
+        width: 100%;
+    }
+}
