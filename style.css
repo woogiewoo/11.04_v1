@@ -21,6 +21,7 @@ body {
     height: auto; /* 비율 유지 */
     object-fit: contain;
     opacity: 0.7; /* 원본 이미지의 미묘한 느낌을 위해 투명도 조절 */
+    visibility: hidden; /* GSAP 애니메이션 전까지 숨김 */
 }
 
 .top-left {
@@ -63,21 +64,22 @@ body {
     top: 50%; /* 기준점을 세로 중앙으로 통일 */
     left: 50%; /* 화면 가로 중앙에서 시작 */
     z-index: 1; /* 쌓임 순서 1로 지정 */
-    transform: translate(-50%, -70%); /* Y값을 조절하여 위로 더 올립니다. */
+    visibility: hidden; /* GSAP 애니메이션 전까지 숨김 */
 }
 .main-illustration:hover {
-    transform: translate(-50%, -60%) scale(1.02); /* 위치 유지하며 확대 */
+    /* transform 속성은 GSAP에서 제어하므로 hover 효과는 스크립트로 이전하는 것을 권장합니다. */
 }
 
 .portfolio-text { 
     /* margin-bottom: 40px; /* absolute positioning 시 필요 없음 */
     /* clamp()를 사용하여 반응형으로 크기를 조절합니다. */
-    width: clamp(300px, 48vw, 1100px);
+    width: clamp(300px, 45vw, 1100px);
     position: absolute; /* main 이미지 아래에 위치시키기 위해 absolute로 변경 */
     z-index: 2; /* main-illustration 보다 높은 순서로 지정 */
     left: 50%; /* 가로 중앙 정렬 */
     transform: translateX(-50%); /* 가로 중앙 정렬 */
-    top: 56%; /* main 이미지 아래에 위치시키기 위한 값, 필요에 따라 조절 */
+    top: 60%; /* main 이미지 아래에 위치시키기 위한 값, 필요에 따라 조절 */
+    visibility: hidden; /* GSAP 애니메이션 전까지 숨김 */
 }
 .portfolio-text:hover {
     transform: translateX(-50%) scale(1.02); /* 위치 유지하며 확대 */
@@ -90,6 +92,7 @@ body {
     bottom: clamp(60px, 14vh, 200px); /* 화면 하단에서의 위치 */
     left: 50%; /* 왼쪽에서 50% 지점으로 이동 */
     transform: translateX(-50%); /* 자기 너비의 50%만큼 왼쪽으로 이동하여 중앙 정렬 */
+    visibility: hidden; /* GSAP 애니메이션 전까지 숨김 */
 }
 .name-bar:hover {
     transform: translateX(-50%) scale(1.02); /* 위치 유지하며 확대 */
@@ -271,9 +274,9 @@ body {
 .category-label {
     margin-top: clamp(10px, 2vh, 20px);
     padding: clamp(4px, 0.8vh, 8px) clamp(15px, 2vw, 30px);
-    background-color: transparent; /* 배경을 투명하게 설정 */
+    background-color: #edecda; /* 요청에 따라 배경색 변경 */
     border-radius: 20px;
-    border: clamp(1px, 0.2vw, 2px) solid #403F60; /* 텍스트 색상과 동일한 테두리 추가 */
+    border: clamp(1px, 0.2vw, 1px) solid #403F60; /* 텍스트 색상과 동일한 테두리 추가 */
     font-size: clamp(0.9rem, 1.5vw, 1.2rem);
     font-weight: 600;
     color: #403F60;

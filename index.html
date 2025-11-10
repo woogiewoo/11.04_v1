@@ -102,6 +102,12 @@
         // ScrollTrigger 플러그인 등록
         gsap.registerPlugin(ScrollTrigger);
 
+        // --- 0. 랜딩 페이지 초기 상태 설정 ---
+        // CSS에서 transform을 제거했으므로, GSAP로 초기 위치와 상태를 명확히 설정합니다.
+        // 이렇게 하면 CSS 렌더링과 GSAP 실행 사이의 충돌로 인한 위치 이동 문제를 근본적으로 해결합니다.
+        gsap.set(".main-illustration", { xPercent: -50, yPercent: -70, autoAlpha: 0 });
+        gsap.set([".corner-line", ".portfolio-text", ".name-bar"], { autoAlpha: 0 });
+
         // --- 1. 랜딩 페이지 애니메이션 ---
         const landingTl = gsap.timeline({
             // 페이지 로드 후 약간의 지연 시간을 줌
@@ -110,14 +116,13 @@
 
         landingTl
             // 코너 라인들이 바깥에서 안으로 들어오며 나타남
-            .from(".corner-line.top-left", { duration: 0.8, x: -50, y: -50, autoAlpha: 0, ease: "power2.out" })
-            .from(".corner-line.top-right", { duration: 0.8, x: 50, y: -50, autoAlpha: 0, ease: "power2.out" }, "<") // 이전 애니메이션과 동시에 시작
+            .to(".corner-line", { duration: 0.8, autoAlpha: 1, stagger: 0.1, ease: "power2.out" })
             // 메인 일러스트가 살짝 커지면서 나타남
-            .from(".main-illustration", { duration: 1.2, scale: 0.9, autoAlpha: 0, ease: "power2.out" }, "-=0.5")
+            .fromTo(".main-illustration", { scale: 0.95 }, { scale: 1, autoAlpha: 1, duration: 1.2, ease: "power2.out" }, "-=0.5")
             // 포트폴리오 제목이 아래에서 위로 나타남
-            .from(".portfolio-text", { duration: 0.8, y: 30, autoAlpha: 0, ease: "power2.out" }, "-=0.8")
+            .fromTo(".portfolio-text", { y: "+=30" }, { y: "+=0", autoAlpha: 1, duration: 0.8, ease: "power2.out" }, "-=0.8")
             // 이름 바가 아래에서 위로 나타남
-            .from(".name-bar", { duration: 0.8, y: 30, autoAlpha: 0, ease: "power2.out" }, "<0.3");
+            .fromTo(".name-bar", { y: "+=30" }, { y: "+=0", autoAlpha: 1, duration: 0.8, ease: "power2.out" }, "<0.3");
 
         // --- 2. 콘텐츠 섹션 스크롤 애니메이션 ---
         const contentTl = gsap.timeline({
