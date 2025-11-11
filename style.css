@@ -565,3 +565,148 @@ body {
         width: 100%;
     }
 }
+
+/* =============================================== */
+/* Knotted Shop Project Detail Section           */
+/* =============================================== */
+.project-section-knotted {
+    width: 100%;
+    min-height: auto;
+    background-color: #FFEFEF; /* Requested background color */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px clamp(10px, 4vw, 10px) 0px; /* 상단 여백을 20px로 고정하여 더 줄임 */
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.knotted-content-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 1600px;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: flex-start;
+}
+
+/* --- Left Column: Text and Title --- */
+.knotted-left-col {
+    flex-basis: 35%; /* 텍스트 영역 */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: sticky; /* 스크롤 시 왼쪽에 고정 */
+    top: 50px; /* 기존 sticky 위치로 복원 */
+    transform: translateY(-50px); /* Y축으로 -150px 만큼 이동 */
+}
+
+.knotted-title {
+    font-family: 'Hilmar Regular', sans-serif; 
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    color: #333333; /* 시안에 맞춘 어두운 색상 */
+    margin-bottom: 5px;
+    line-height: 1.1;
+}
+
+.knotted-tag {
+    /* 기존 태그 스타일 재활용 */
+    display: inline-block;
+    padding: clamp(5px, 1vh, 10px) clamp(15px, 2vw, 25px);
+    border-radius: 50px;
+    border: 2px solid #333333;
+    color: #333333;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    text-transform: capitalize; /* 'Detail page' */
+}
+
+.knotted-text-image {
+    width: 55%;
+    height: auto;
+    display: block;
+}
+
+/* --- Right Column: Images (with Overlap) --- */
+.knotted-right-col {
+    flex-basis: 65%; /* 이미지 영역 */
+    position: relative; /* 자식 요소(말풍선)의 absolute positioning 기준점 */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    /* transform으로 인해 생긴 빈 공간을 음수 마진으로 제거합니다. */
+    margin-bottom: -310px; 
+}
+
+.knotted-main-image {
+    width: 140%; /* 이미지를 더 크게 만들어 동적인 느낌을 줍니다. */
+    height: auto;
+    display: block;
+    /* 위치를 미세 조정하여 레이아웃을 개선합니다. */
+    transform: translateX(5%) translateY(-12%); 
+}
+
+/* 겹치는 말풍선 이미지 래퍼 */
+.knotted-speech-bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 5; /* 메인 이미지 위에 오도록 설정 */
+}
+
+.knotted-speech-bubbles img {
+    position: absolute;
+    width: 45%; /* 말풍선 크기 (비율 조정 필요) */
+    height: auto;
+}
+
+/* knotted_ball1.svg (파랑)
+knotted_ball2.svg (분홍)
+knotted_ball3.svg (초록)
+시안에 맞춘 말풍선 개별 위치 조정
+*/
+.knotted-speech-bubbles img:nth-child(1) {
+    top: 53%;
+    left: -40%;
+    width: 20%;
+    transform: rotate(0deg);
+}
+.knotted-speech-bubbles img:nth-child(2) {
+    top: 47%;
+    left: -21%;
+    width: 25%;
+    transform: rotate(0deg);
+}
+.knotted-speech-bubbles img:nth-child(3) {
+    top: 57%;
+    left: -17%;
+    width: 25%;
+    transform: rotate(0deg);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+    .project-section-knotted {
+        padding: 60px 20px;
+    }
+    .knotted-content-wrapper {
+        flex-direction: column;
+        gap: 60px;
+    }
+    .knotted-left-col, .knotted-right-col {
+        flex-basis: 100%;
+    }
+    .knotted-left-col {
+        position: static; /* 모바일에서는 sticky 해제 */
+        top: auto;
+    }
+    .knotted-speech-bubbles {
+        display: none; /* 모바일에서는 복잡한 겹침을 숨길 수 있음 (선택 사항) */
+        /* 만약 모바일에서도 보여주려면, 위치를 재조정해야 합니다. */
+    }
+}
+}
