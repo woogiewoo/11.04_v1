@@ -1,4 +1,7 @@
-/* 폰트 선언 (실제 폰트 파일 경로로 수정 필요) */
+/* Pretendard 폰트 CDN 임포트 */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+/* Hilmar 폰트 선언 (실제 폰트 파일 경로로 수정 필요) */
 @font-face {
     font-family: 'Hilmar Regular';
     src: url('assets/fonts/Hilmar-Regular.woff2') format('woff2'),
@@ -66,9 +69,11 @@ body {
     z-index: 1; /* 쌓임 순서 1로 지정 */
     visibility: hidden; /* GSAP 애니메이션 전까지 숨김 */
 }
-.main-illustration:hover {
-    /* transform 속성은 GSAP에서 제어하므로 hover 효과는 스크립트로 이전하는 것을 권장합니다. */
-}
+
+/* transform 속성은 GSAP에서 제어하므로 hover 효과는 스크립트로 이전하는 것을 권장합니다. */
+/* .main-illustration:hover {
+    
+} */
 
 .portfolio-text { 
     /* margin-bottom: 40px; /* absolute positioning 시 필요 없음 */
@@ -273,14 +278,17 @@ body {
 
 .category-label {
     margin-top: clamp(10px, 2vh, 20px);
-    padding: clamp(4px, 0.8vh, 8px) clamp(15px, 2vw, 30px);
+    padding-top: clamp(1px, 0.3vh, 4px); /* 상단 여백 */
+    padding-bottom: clamp(1px, 0.3vh, 4px); /* 하단 여백 */
+    width: clamp(180px, 15vw, 240px); /* 반응형 너비를 설정하여 길이를 통일합니다. */
     background-color: #edecda; /* 요청에 따라 배경색 변경 */
     border-radius: 20px;
-    border: clamp(1px, 0.2vw, 1px) solid #403F60; /* 텍스트 색상과 동일한 테두리 추가 */
+    border: 1px solid #403F60; /* 테두리를 1px로 고정하여 더 얇게 만듭니다. */
     font-size: clamp(0.9rem, 1.5vw, 1.2rem);
     font-weight: 600;
     color: #403F60;
     text-transform: capitalize; /* 첫 글자를 대문자로 변경 */
+    text-align: center; /* 텍스트를 중앙에 정렬합니다. */
 }
 
 /* --- Responsive Design --- */
@@ -319,7 +327,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 80px clamp(20px, 5vw, 60px) 40px; /* 상단 80px, 하단 40px 패딩으로 조정합니다. */
+    padding: 80px clamp(20px, 5vw, 60px) 120px; /* 상단 80px, 하단 120px 패딩으로 조정합니다. */
     box-sizing: border-box;
     overflow: hidden;
 }
@@ -337,18 +345,17 @@ body {
     /* 기존 폰트 사용 */
     font-family: 'Hilmar Regular', sans-serif; 
     font-size: clamp(3rem, 7vw, 6rem);
-    color: #403F60;
+    color: #754A9C;
     margin: 0;
-    line-height: 1.1;
-    text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.4);
+    line-height: 1.1;    
 }
 
 .uxui-tag {
     display: inline-block;
-    padding: clamp(5px, 1vh, 10px) clamp(15px, 2vw, 25px);
+    padding: clamp(1px, 0.2vh, 4px) clamp(40px, 5vw, 60px); /* 상하 패딩을 더 줄이고, 좌우 패딩을 더 늘립니다. */
     border-radius: 50px;
-    border: 2px solid #403F60;
-    color: #403F60;
+    border: 1px solid #EDEDED;
+    color: #754A9C;
     font-size: clamp(0.9rem, 1.5vw, 1.2rem);
     font-weight: 600;
     margin-top: 15px;
@@ -404,13 +411,13 @@ body {
 
 /* Large bottom image for lush 1 */
 .uxui-main-image {
-    /* 부모 컨테이너보다 크게 설정하여 이미지를 키웁니다. */
-    width: 115%;
-    /* 화면 너비에 비례하여 위치를 위로 조정합니다. */
-    /* translateX를 사용하여 오른쪽 정렬을 맞춥니다. */
-    transform: translateX(1.9vw) translateY(-14vw);
-    /* transform으로 인해 생긴 하단 빈 공간을 음수 마진으로 제거합니다. */
-    margin-bottom: -14vw;
+    /* --- 크기 및 위치 조절 예시 --- */
+    /* 부모 컨테이너보다 크게 설정하여 이미지를 키웁니다. (예: 120%) */
+    width: 120%; 
+    /* 위치를 조정합니다. (예: 오른쪽으로 5vw, 위로 16vw 이동) */
+    transform: translateX(1.8vw) translateY(-13.1vw);
+    /* transform으로 인해 생긴 하단 빈 공간을 음수 마진으로 제거합니다. (translateY 값과 맞추는 것이 좋습니다) */
+    margin-bottom: -16vw;
 }
 .uxui-main-image img {
     width: 100%;
@@ -508,28 +515,29 @@ body {
     flex-basis: 35%; /* 텍스트 영역 좁게 설정 */
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end; /* 자식 요소들을 우측으로 정렬합니다. */
     position: sticky; /* 스크롤 시 오른쪽에 고정되도록 sticky 사용 */
     top: 50px;
 }
 
 .oimu-title {
     font-family: 'Hilmar Regular', sans-serif; 
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    color: #8C4B59; /* 시안에 맞춰 톤다운된 레드/버건디 계열 */
-    margin-bottom: 5px;
-    line-height: 1;
+    font-size: clamp(3rem, 7vw, 6rem); /* uxui-title과 동일하게 변경 */
+    color: #D15B43;
+    margin: 0; /* uxui-title과 동일하게 변경 */
+    line-height: 1.1; /* uxui-title과 동일하게 변경 */
+    text-align: right; /* 텍스트를 우측으로 정렬합니다. */
 }
 
 .oimu-tag {
     /* 기존 uxui-tag 스타일 재활용 */
     display: inline-block;
-    padding: clamp(5px, 1vh, 10px) clamp(15px, 2vw, 25px);
+    padding: clamp(1px, 0.2vh, 4px) clamp(40px, 5vw, 60px);
     border-radius: 50px;
-    border: 2px solid #8C4B59;
-    color: #8C4B59;
+    border: 1px solid #FFFFFF;
+    color: #D15B43;
     font-size: clamp(0.9rem, 1.5vw, 1.2rem);
-    font-weight: 600;
+    font-weight: 600; 
     margin-top: 5px;
     margin-bottom: 25px;
     text-transform: uppercase;
@@ -612,7 +620,7 @@ body {
 .knotted-tag {
     /* 기존 태그 스타일 재활용 */
     display: inline-block;
-    padding: clamp(5px, 1vh, 10px) clamp(15px, 2vw, 25px);
+    padding: clamp(1px, 0.2vh, 4px) clamp(40px, 5vw, 60px);
     border-radius: 50px;
     border: 2px solid #333333;
     color: #333333;
@@ -709,4 +717,561 @@ knotted_ball3.svg (초록)
         /* 만약 모바일에서도 보여주려면, 위치를 재조정해야 합니다. */
     }
 }
+
+/* =============================================== */
+/* Mikkot Shop Project Detail Section            */
+/* =============================================== */
+.project-section-mikkot {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #DBE9F0; /* Requested background color */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(80px, 10vh, 120px) clamp(40px, 8vw, 100px);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.mikkot-content-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 1600px;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: flex-start;
+}
+
+/* --- Left Column: Staggered Images --- */
+.mikkot-left-col {
+    flex-basis: 60%; /* 이미지 영역 */
+    display: flex;
+    gap: clamp(20px, 3vw, 30px);
+    align-items: flex-start;
+}
+
+.mikkot-image-col {
+    flex: 1; /* 3개 컬럼이 동일한 너비를 갖도록 함 */
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 3vw, 30px);
+}
+
+.mikkot-image-col img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* "높이 차이를 살짝식" - Staggered effect using margin-top */
+.mikkot-image-col:nth-child(2) {
+    margin-top: 80px; /* 두 번째 컬럼을 아래로 내림 */
+}
+.mikkot-image-col:nth-child(3) {
+    margin-top: 40px; /* 세 번째 컬럼을 살짝 내림 */
+}
+
+
+/* --- Right Column: Text and Title --- */
+.mikkot-right-col {
+    flex-basis: 40%; /* 텍스트 영역 */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: sticky; /* 스크롤 시 오른쪽에 고정 */
+    top: 50px;
+}
+
+.mikkot-title {
+    font-family: 'Hilmar Regular', sans-serif; 
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    color: #4CA189; /* Requested color */
+    margin-bottom: 5px;
+    line-height: 1.1;
+}
+
+.mikkot-tag {
+    /* 기존 태그 스타일 재활용 */
+    display: inline-block;
+    padding: clamp(1px, 0.2vh, 4px) clamp(40px, 5vw, 60px);
+    border-radius: 50px;
+    border: 2px solid #4CA189; /* Requested color */
+    color: #4CA189; /* Requested color */
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    text-transform: capitalize; /* 'Detail page' */
+}
+
+.mikkot-text-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+    .project-section-mikkot {
+        padding: 60px 20px;
+    }
+    .mikkot-content-wrapper {
+        flex-direction: column;
+        gap: 60px;
+    }
+    .mikkot-left-col, .mikkot-right-col {
+        flex-basis: 100%;
+    }
+    .mikkot-right-col {
+        position: static; /* 모바일에서는 sticky 해제 */
+        top: auto;
+    }
+    .mikkot-left-col {
+        flex-direction: column; /* 모바일에서는 3단 컬럼을 1단으로 변경 */
+    }
+    .mikkot-image-col:nth-child(2),
+    .mikkot-image-col:nth-child(3) {
+        margin-top: 0; /* 모바일에서는 staggered effect 제거 */
+    }
+}
+
+/* =============================================== */
+/* Frederic Malle Project Detail Section         */
+/* =============================================== */
+.project-section-fm {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #F48952; /* Requested background color */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(80px, 10vh, 120px) clamp(40px, 8vw, 100px);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.fm-content-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 1600px;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: flex-start;
+}
+
+/* --- Left Column: Text and Title --- */
+.fm-left-col {
+    flex-basis: 35%; /* 텍스트 및 메인 이미지 영역 */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: sticky; /* 스크롤 시 왼쪽에 고정 */
+    top: 50px;
+}
+
+.fm-title {
+    font-family: 'Hilmar Regular', sans-serif; 
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    color: #070707; /* Requested color */
+    margin-bottom: 5px;
+    line-height: 1.1;
+}
+
+.fm-tag {
+    /* 기존 태그 스타일 재활용 */
+    display: inline-block;
+    padding: clamp(1px, 0.2vh, 4px) clamp(40px, 5vw, 60px);
+    border-radius: 50px;
+    border: 2px solid #070707; /* Requested color */
+    color: #070707; /* Requested color */
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    text-transform: capitalize; /* 'Prints' */
+}
+
+.fm-main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* 요청대로 효과 없음 */
+}
+
+/* --- Right Column: 2-Column Image Grid --- */
+.fm-right-col {
+    flex-basis: 65%; /* 2단 이미지 그리드 영역 */
+    display: flex;
+    gap: clamp(20px, 3vw, 30px);
+    align-items: flex-start;
+}
+
+.fm-image-col {
+    flex: 1; /* 2개 컬럼이 동일한 너비를 갖도록 함 */
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 3vw, 30px);
+}
+
+.fm-image-col img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* 요청대로 효과 없음 */
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+    .project-section-fm {
+        padding: 60px 20px;
+    }
+    .fm-content-wrapper {
+        flex-direction: column;
+        gap: 60px;
+    }
+    .fm-left-col, .fm-right-col {
+        flex-basis: 100%;
+    }
+    .fm-left-col {
+        position: static; /* 모바일에서는 sticky 해제 */
+        top: auto;
+    }
+    .fm-right-col {
+        flex-direction: column; /* 모바일에서는 2단 그리드를 1단으로 변경 */
+    }
+}
+
+/* =============================================== */
+/* Posters (Prints) Project Section              */
+/* =============================================== */
+.project-section-posters {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #1E1D22; /* 배경색은 유지 */
+
+    /* --- 3개의 배경 이미지 설정 --- */
+    background-image: 
+        url('images/poster_line_1.svg'), 
+        url('images/poster_line_2.svg'), 
+        url('images/poster_line_3.svg');
+    background-size: 20%, 40%, 30%; /* 각 이미지의 크기 (예시) */
+    background-position: 
+        left 23vw top -17vh,       /* 1번 이미지: 왼쪽에서 5vw, 위에서 10vh 위치 */
+        left 11vw top 77vh,                  /* 2번 이미지: 정중앙 */
+        right -7vw bottom -130vh;   /* 3번 이미지: 오른쪽에서 5vw, 아래에서 10vh 위치 */
+    background-repeat: no-repeat;
+
+    color: #FEFEFE; /* Default text color for this section */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(80px, 10vh, 120px) clamp(40px, 8vw, 100px);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.posters-content-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 1600px;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: flex-start;
+}
+
+/* --- Left Column: Text and Title --- */
+.posters-left-col {
+    flex-basis: 30%; /* 텍스트 영역 */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: sticky; /* 스크롤 시 왼쪽에 고정 */
+    top: 50px;
+}
+
+.posters-title {
+    font-family: 'Hilmar Regular', sans-serif; 
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    color: #FEFEFE; /* Requested color */
+    margin-bottom: 5px;
+    line-height: 1.1;
+}
+
+.posters-tag {
+    /* 기존 태그 스타일 재활용 */
+    display: inline-block;
+    padding: clamp(1px, 0.2vh, 4px) clamp(40px, 5vw, 60px);
+    border-radius: 50px;
+    border: 2px solid #FEFEFE; /* Requested color */
+    color: #FEFEFE; /* Requested color */
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    text-transform: capitalize; /* 'Prints' */
+}
+
+/* --- Right Column: 3-Column Image Grid --- */
+.posters-right-col {
+    flex-basis: 70%; /* 3단 이미지 그리드 영역 */
+    display: flex;
+    gap: clamp(20px, 3vw, 30px);
+    align-items: flex-start;
+}
+
+.posters-image-col {
+    flex: 1; /* 3개 컬럼이 동일한 너비를 갖도록 함 */
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 3vw, 30px);
+}
+
+.posters-image-col img {
+    width: 100%;
+    height: auto;
+    display: block; 
+    object-fit: cover; /* 이미지 비율을 유지하면서 컨테이너를 채웁니다. */ 
+    transition: transform 0.3s ease; /* 부드러운 효과를 위한 transition */
+}
+
+/* 이미지에 마우스를 올렸을 때 살짝 확대되는 효과 */
+.posters-image-col img:hover {
+    transform: scale(1.03);
+}
+
+/* --- Posters 섹션 특정 이미지 높이 조정 --- */
+/*
+    HTML 구조:
+    - 1열: poster_1, poster_2
+    - 2열: poster_3, poster_4, poster_5
+    - 3열: poster_6, poster_7
+*/
+
+/* poster_2 (1열 2번째), poster_7 (3열 2번째) 이미지 높이 설정 */
+.posters-image-col:nth-child(1) img:nth-child(2),
+.posters-image-col:nth-child(3) img:nth-child(2) {
+    height: 490px; /* 원하는 높이로 조절하세요. */
+}
+
+/* poster_5.png (2열 3번째) 이미지 개별 수정 */
+.posters-image-col:nth-child(2) img:nth-child(3) {
+    height: 480px; /* 예시: 높이를 350px로 개별 지정 */
+    transform: translateY(83px); /* 예시: 아래로 20px 이동 */
+    /* 다른 크기나 위치 조정을 원하시면 이 값을 변경하세요. */
+}
+
+/* poster_4.png (2열 2번째) 이미지 위치 개별 수정 */
+.posters-image-col:nth-child(2) img:nth-child(2) {
+    height: 180px;
+    transform: translateY(35px); /* 예시: 위로 30px 이동 */
+    /* 다른 위치 조정을 원하시면 이 값을 변경하세요. */
+}
+
+/* poster_5.png 호버 시 확대 효과 추가 */
+.posters-image-col:nth-child(2) img:nth-child(3):hover {
+    transform: translateY(87px) scale(1.03);
+}
+
+/* poster_4.png 호버 시 확대 효과 추가 */
+.posters-image-col:nth-child(2) img:nth-child(2):hover {
+    transform: translateY(35px) scale(1.03);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+    .project-section-posters {
+        padding: 60px 20px;
+    }
+    .posters-content-wrapper {
+        flex-direction: column;
+        gap: 60px;
+    }
+    .posters-left-col, .posters-right-col {
+        flex-basis: 100%;
+    }
+    .posters-left-col {
+        position: static; /* 모바일에서는 sticky 해제 */
+        top: auto;
+    }
+    .posters-right-col {
+        flex-direction: column; /* 모바일에서는 3단 그리드를 1단으로 변경 */
+    }
+}
+
+/* =============================================== */
+/* Ported About Section (from index2.css)        */
+/* =============================================== */
+/* Base class from style2.css needed for the new sections */
+.section {
+    min-height: 100vh;
+    padding: 100px 0;
+    /* Opacity/Transform will be controlled by GSAP */
+}
+
+/* Container class from style2.css */
+.container {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Section Title class from style2.css */
+.section-title {
+    font-size: 3rem;
+    text-align: center;
+    color: #8b6f47;
+    margin-bottom: 40px;
+    font-family: 'Hilmar Regular', sans-serif;
+}
+
+/* About Section styles */
+.about {
+    background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 50%, #e17055 100%);
+    overflow: hidden; /* Prevent slide-in overflow */
+    min-height: auto; /* 내용에 맞게 높이 조절 */
+    padding: 80px 0 150px; /* 상단 100px, 하단 150px 여백으로 조정 */
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 4rem;
+}
+
+.about-image {
+    height: 400px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    margin-left: 300px; /* Aligned with style2.css */
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 20px;
+}
+
+.about-text {
+    margin-left: 200px; /* Aligned with style2.css */
+    color: #2d3436; /* Text color from style2.css */
+    font-family: 'Pretendard', sans-serif; /* Pretendard 폰트 적용 */
+}
+
+.about-text h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #d63031;
+}
+
+.about-text p {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+/* =============================================== */
+/* Ported Footer Section (from index2.css)       */
+/* =============================================== */
+.footer {
+    background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+    color: white;
+    padding: 4rem 0 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.footer-content {
+    /* Opacity/Transform will be controlled by GSAP */
+}
+
+.footer h3 {
+    /* Manually adding title style as .section-title is not used in footer HTML */
+    font-size: 3rem;
+    text-align: center;
+    color: #FFF; /* Footer title color */
+    margin-bottom: 2rem;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.contact-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+}
+
+/* =============================================== */
+/* Ported Scroll Top Button (from index2.css)    */
+/* =============================================== */
+#scrollTopBtn {
+    position: fixed;
+    right: 32px;
+    bottom: 36px;
+    z-index: 1200;
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.32);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.22s, transform 0.22s, background 0.22s, opacity 0.3s, scale 0.3s;
+    opacity: 0;
+    scale: 0.7;
+    pointer-events: none;
+}
+#scrollTopBtn.show {
+    opacity: 1;
+    scale: 1;
+    pointer-events: auto;
+}
+#scrollTopBtn:hover {
+    background: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 12px 36px 0 rgba(139, 111, 71, 0.18);
+    transform: translateY(-6px) scale(1.08);
+}
+#scrollTopBtn svg {
+    display: block;
+    margin-top: 2px;
+}
+#scrollTopBtn svg path {
+    transition: stroke 0.2s;
+    stroke: #8b6f47; /* Stroke color from style2.css */
+    stroke-width: 2.5;
+}
+#scrollTopBtn:hover svg path {
+    stroke: #d4a15a;
+}
+
+/* Responsive styles from style2.css for new sections */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+    .about-image, .about-text {
+        margin-left: 0; /* Remove desktop-only margins */
+    }
 }
