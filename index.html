@@ -9,7 +9,7 @@
 </head>
 <body>
     <img src="images/line 1.png" alt="좌측 상단 코너 라인" class="corner-line top-left">
-    <img src="images/line 2.png" alt="우측 상단 코너 라인" class="corner-line top-right">
+    <img src="images/Line 2.png" alt="우측 상단 코너 라인" class="corner-line top-right">
 
     <main class="portfolio-container">
         <div class="landing-image-wrapper">
@@ -299,7 +299,17 @@
         // --- 1. 랜딩 페이지 애니메이션 ---
         const landingTl = gsap.timeline({
             // 페이지 로드 후 약간의 지연 시간을 줌
-            delay: 0.3
+            delay: 0.3,
+            onComplete: () => {
+                // 메인 일러스트가 숨 쉬는 듯한 효과 추가
+                gsap.to(".main-illustration", {
+                    scale: 1.02, // 살짝 커지는 정도
+                    duration: 3, // 숨 한 번 쉬는 시간 (3초)
+                    repeat: -1,  // 무한 반복
+                    yoyo: true,  // 커졌다 작아졌다 반복
+                    ease: "power1.inOut" // 부드러운 움직임
+                });
+            }
         });
 
         landingTl
