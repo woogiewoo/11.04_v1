@@ -783,6 +783,7 @@ knotted_ball3.svg (초록)
     align-items: flex-end; /* 자식 요소들을 우측으로 정렬합니다. */
     position: sticky; /* 스크롤 시 오른쪽에 고정 */
     top: 50px;
+    transform: translateX(-3vw); /* 왼쪽으로 살짝 이동시킵니다. */
 }
 
 .mikkot-title {
