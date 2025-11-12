@@ -55,22 +55,22 @@
 
             <!-- Right Column: Category Navigation -->
             <div class="category-container">
-                <a href="#" class="category-item">
+                <a href="#uxui-section" class="category-item">
                     <img src="images/content_web.png" alt="UX / UI Category" class="category-image">
                     <img src="images/star.png" alt="Star Accent" class="star-accent">
                     <span class="category-label">UX / UI</span>
                 </a>
-                <a href="#" class="category-item">
+                <a href="#knotted-section" class="category-item">
                     <img src="images/content_branding.png" alt="Branding Category" class="category-image">
                     <img src="images/star.png" alt="Star Accent" class="star-accent">
                     <span class="category-label">branding</span>
                 </a>
-                <a href="#" class="category-item">
+                <a href="#fm-section" class="category-item">
                     <img src="images/content_print.png" alt="Print Products Category" class="category-image">
                     <img src="images/star.png" alt="Star Accent" class="star-accent">
                     <span class="category-label">print products</span>
                 </a>
-                <a href="#" class="category-item">
+                <a href="#posters-section" class="category-item">
                     <img src="images/content_illu.png" alt="Illustration Category" class="category-image">
                     <img src="images/star.png" alt="Star Accent" class="star-accent">
                     <span class="category-label">illustration</span>
@@ -80,7 +80,7 @@
         </div>
     </section>
 
-    <section class="project-section-uxui">
+    <section id="uxui-section" class="project-section-uxui">
         <div class="uxui-header">
             <h1 class="uxui-title">LUSH <br>Website</h1>
             <span class="uxui-tag">UX / UI</span>
@@ -130,7 +130,7 @@
         </div>
     </section>
 
-    <section class="project-section-knotted">
+    <section id="knotted-section" class="project-section-knotted">
         <div class="knotted-content-wrapper">
             <div class="knotted-left-col">
                 <h1 class="knotted-title">Knotted <br> shop</h1>
@@ -175,7 +175,7 @@
         </div>
     </section>
 
-    <section class="project-section-fm">
+    <section id="fm-section" class="project-section-fm">
         <div class="fm-content-wrapper">
             <div class="fm-left-col">
                 <h1 class="fm-title">Frederic Malle <br> Art book design</h1>
@@ -196,7 +196,7 @@
         </div>
     </section>
 
-    <section class="project-section-posters">
+    <section id="posters-section" class="project-section-posters">
         <div class="posters-content-wrapper">
             <div class="posters-left-col">
                 <h1 class="posters-title">Posters</h1>
@@ -342,6 +342,19 @@
             // 5. 오른쪽 카테고리 아이템들이 아래에서 위로 순차적으로 나타남
             .from(".category-item", { duration: 0.6, y: 50, autoAlpha: 0, stagger: 0.2 }, "<");
 
+        // --- 카테고리 링크 부드러운 스크롤 처리 ---
+        document.querySelectorAll('a.category-item').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                // href가 #으로 시작하는 내부 링크인지 확인
+                if (href && href.startsWith('#')) {
+                    e.preventDefault(); // 기본 점프 동작 방지
+                    // Lenis를 사용하여 부드럽게 스크롤
+                    lenis.scrollTo(href, { duration: 1.5, ease: 'power2.inOut' });
+                }
+            });
+        });
+
         // --- 3. Ported GSAP Animations (About & Footer) ---
         
         // About 섹션 좌우 슬라이드 애니메이션
@@ -381,6 +394,109 @@
                 }
             }
         );
+
+        // --- 5. 각 프로젝트 섹션 스크롤 애니메이션 ---
+
+        // LUSH 섹션 애니메이션
+        const lushTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".project-section-uxui",
+                start: "top 60%",
+                toggleActions: "play none none reverse"
+            }
+        });
+        lushTl.from(".uxui-title", { duration: 0.8, x: -50, autoAlpha: 0, ease: "power2.out" })
+              .from(".uxui-tag", { duration: 0.6, y: 30, autoAlpha: 0, ease: "power2.out" }, "-=0.5")
+              .from(".uxui-left-col", { duration: 1, x: -80, autoAlpha: 0, ease: "power2.out" }, "<")
+              .from(".uxui-top-images img", { duration: 0.8, y: 80, autoAlpha: 0, stagger: 0.2, ease: "power2.out" }, "-=0.5")
+              .from(".uxui-main-image", { duration: 1.2, scale: 0.9, autoAlpha: 0, ease: "elastic.out(1, 0.75)" }, "-=0.5");
+
+        // OIMU 섹션 애니메이션
+        const oimuTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".project-section-oimu",
+                start: "top 60%",
+                toggleActions: "play none none reverse"
+            }
+        });
+        oimuTl.from(".oimu-right-col > *", { duration: 0.8, x: 50, autoAlpha: 0, stagger: 0.2, ease: "power2.out" })
+              .from(".oimu-main-image", { duration: 1, scale: 1.05, autoAlpha: 0, ease: "power2.out" }, "<")
+              .from(".oimu-sub-row img", { duration: 0.7, y: 50, autoAlpha: 0, stagger: 0.15, ease: "power2.out" }, "-=0.5");
+
+        // Knotted 섹션 애니메이션
+        const knottedTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".project-section-knotted",
+                start: "top 60%",
+                toggleActions: "play none none reverse"
+            }
+        });
+        knottedTl.from(".knotted-left-col > *", { duration: 0.8, x: -50, autoAlpha: 0, stagger: 0.2, ease: "power2.out" })
+                 .from(".knotted-main-image", { duration: 1.2, yPercent: 10, autoAlpha: 0, ease: "power3.out" }, "<")
+                 .from(".knotted-speech-bubbles img", { duration: 0.8, scale: 0.5, autoAlpha: 0, stagger: 0.2, ease: "back.out(1.7)" }, "-=0.7");
+
+        // Mikkot 섹션 애니메이션
+        const mikkotTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".project-section-mikkot",
+                start: "top 60%",
+                toggleActions: "play none none reverse"
+            }
+        });
+        mikkotTl.from(".mikkot-right-col > *", { duration: 0.8, x: 50, autoAlpha: 0, stagger: 0.2, ease: "power2.out" })
+                .from(".mikkot-image-col:nth-child(1) img", { duration: 0.8, y: 60, autoAlpha: 0, stagger: 0.2, ease: "power2.out" }, "<")
+                .from(".mikkot-image-col:nth-child(2) img", { duration: 0.8, y: 60, autoAlpha: 0, stagger: 0.2, ease: "power2.out" }, "<0.2")
+                .from(".mikkot-image-col:nth-child(3) img", { duration: 0.8, y: 60, autoAlpha: 0, stagger: 0.2, ease: "power2.out" }, "<0.2");
+
+        // Frederic Malle 섹션 애니메이션
+        const fmTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".project-section-fm",
+                start: "top 60%",
+                toggleActions: "play none none reverse"
+            }
+        });
+        fmTl.from(".fm-left-col > *", { duration: 0.8, x: -50, autoAlpha: 0, stagger: 0.2, ease: "power2.out" })
+            .from(".fm-right-col .fm-image-col img", { duration: 0.7, scale: 0.9, autoAlpha: 0, stagger: 0.15, ease: "power2.out" }, "<0.3");
+
+        // Posters 섹션 애니메이션
+        const postersTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".project-section-posters",
+                start: "top 60%",
+                toggleActions: "play none none reverse"
+            }
+        });
+        postersTl.from(".posters-left-col > *", { duration: 0.8, y: 50, autoAlpha: 0, stagger: 0.2, ease: "power2.out" })
+                 .from(".posters-right-col .posters-image-col", { duration: 1, y: 80, autoAlpha: 0, stagger: 0.2, ease: "power3.out" }, "<0.3");
+
+        // Posters 섹션 배경 라인 이미지 패럴랙스 효과
+        gsap.to(".project-section-posters", {
+            backgroundPosition: 
+                "left 20vw top 0vh, left 15vw top 85vh, right -5vw bottom -120vh",
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".project-section-posters",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+        // Posters 섹션 이미지 호버 효과 (CSS에서 JS로 이동)
+        const posterImages = document.querySelectorAll('.posters-image-col img');
+        posterImages.forEach(img => {
+            // 기존 transform 값을 유지하기 위해 GSAP의 .getProperty() 사용
+            const originalTransform = gsap.getProperty(img, "transform");
+            
+            img.addEventListener('mouseenter', () => {
+                gsap.to(img, { scale: 1.03, duration: 0.3, ease: "power1.out" });
+            });
+            img.addEventListener('mouseleave', () => {
+                // 호버 해제 시 원래 transform 값으로 복원
+                gsap.to(img, { transform: originalTransform, scale: 1, duration: 0.3, ease: "power1.out" });
+            });
+        });
 
         // --- 4. Ported Scroll Top Button Logic ---
         const scrollTopBtn = document.getElementById('scrollTopBtn');

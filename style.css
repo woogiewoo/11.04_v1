@@ -544,7 +544,7 @@ body {
 }
 
 .oimu-text-image {
-    width: 100%;
+    width: 60%;
     height: auto;
     display: block;
 }
@@ -611,10 +611,11 @@ body {
 
 .knotted-title {
     font-family: 'Hilmar Regular', sans-serif; 
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    color: #333333; /* 시안에 맞춘 어두운 색상 */
-    margin-bottom: 5px;
-    line-height: 1.1;
+    font-size: clamp(3rem, 7vw, 6rem); /* lush-title과 동일하게 변경 */
+    color: #D85050; /* 시안에 맞춘 어두운 색상 */
+    margin-top: 50px; /* lush-title과 동일하게 변경 */
+    line-height: 1.1; /* lush-title과 동일하게 유지 */
+    margin-bottom: 10px;
 }
 
 .knotted-tag {
@@ -622,17 +623,17 @@ body {
     display: inline-block;
     padding: clamp(1px, 0.2vh, 4px) clamp(40px, 5vw, 60px);
     border-radius: 50px;
-    border: 2px solid #333333;
-    color: #333333;
+    border: 1px solid #ffffff;
+    color: #D85050;
     font-size: clamp(0.9rem, 1.5vw, 1.2rem);
     font-weight: 600;
-    margin-top: 5px;
+    margin-top: 15px;
     margin-bottom: 25px;
     text-transform: capitalize; /* 'Detail page' */
 }
 
 .knotted-text-image {
-    width: 55%;
+    width: 50%;
     height: auto;
     display: block;
 }
@@ -748,6 +749,7 @@ knotted_ball3.svg (초록)
     display: flex;
     gap: clamp(20px, 3vw, 30px);
     align-items: flex-start;
+    transform: translateX(5vw); /* 전체를 오른쪽으로 살짝 이동시킵니다. */
 }
 
 .mikkot-image-col {
@@ -777,17 +779,18 @@ knotted_ball3.svg (초록)
     flex-basis: 40%; /* 텍스트 영역 */
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end; /* 자식 요소들을 우측으로 정렬합니다. */
     position: sticky; /* 스크롤 시 오른쪽에 고정 */
     top: 50px;
 }
 
 .mikkot-title {
     font-family: 'Hilmar Regular', sans-serif; 
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-size: clamp(3rem, 7vw, 6rem); /* lush-title과 동일하게 변경 */
     color: #4CA189; /* Requested color */
-    margin-bottom: 5px;
-    line-height: 1.1;
+    margin: 0; /* lush-title과 동일하게 변경 */
+    line-height: 1.1; /* lush-title과 동일하게 유지 */
+    text-align: right; /* 텍스트를 우측으로 정렬합니다. */
 }
 
 .mikkot-tag {
@@ -795,17 +798,17 @@ knotted_ball3.svg (초록)
     display: inline-block;
     padding: clamp(1px, 0.2vh, 4px) clamp(40px, 5vw, 60px);
     border-radius: 50px;
-    border: 2px solid #4CA189; /* Requested color */
+    border: 1px solid #ffffff; /* Requested color */
     color: #4CA189; /* Requested color */
     font-size: clamp(0.9rem, 1.5vw, 1.2rem);
     font-weight: 600;
-    margin-top: 5px;
+    margin-top: 15px;
     margin-bottom: 25px;
     text-transform: capitalize; /* 'Detail page' */
 }
 
 .mikkot-text-image {
-    width: 100%;
+    width: 50%;
     height: auto;
     display: block;
 }
@@ -871,10 +874,10 @@ knotted_ball3.svg (초록)
 
 .fm-title {
     font-family: 'Hilmar Regular', sans-serif; 
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-size: clamp(3rem, 7vw, 6rem); /* lush-title과 동일하게 변경 */
     color: #070707; /* Requested color */
-    margin-bottom: 5px;
-    line-height: 1.1;
+    margin: 0; /* lush-title과 동일하게 변경 */
+    line-height: 1.1; /* lush-title과 동일하게 유지 */
 }
 
 .fm-tag {
@@ -882,11 +885,11 @@ knotted_ball3.svg (초록)
     display: inline-block;
     padding: clamp(1px, 0.2vh, 4px) clamp(40px, 5vw, 60px);
     border-radius: 50px;
-    border: 2px solid #070707; /* Requested color */
+    border: 1px solid #CFCFCF; /* Requested color */
     color: #070707; /* Requested color */
     font-size: clamp(0.9rem, 1.5vw, 1.2rem);
     font-weight: 600;
-    margin-top: 5px;
+    margin-top: 15px;
     margin-bottom: 25px;
     text-transform: capitalize; /* 'Prints' */
 }
