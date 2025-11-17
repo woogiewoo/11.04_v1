@@ -11,7 +11,20 @@
     <img src="images/line 1.png" alt="좌측 상단 코너 라인" class="corner-line top-left">
     <img src="images/Line 2.png" alt="우측 상단 코너 라인" class="corner-line top-right">
 
-    <main class="portfolio-container">
+    <!-- =============================================== -->
+    <!-- Side Navigation Bar                           -->
+    <!-- =============================================== -->
+    <nav class="side-nav">
+        <a href="#home-section" class="nav-link" data-section="home-section"><span></span><span class="nav-text">Home</span></a>
+        <a href="#content-section" class="nav-link" data-section="content-section"><span></span><span class="nav-text">Contents</span></a>
+        <a href="#uxui-section" class="nav-link" data-section="uxui-section"><span></span><span class="nav-text">UX/UI</span></a>
+        <a href="#knotted-section" class="nav-link" data-section="knotted-section"><span></span><span class="nav-text">Branding</span></a>
+        <a href="#fm-section" class="nav-link" data-section="fm-section"><span></span><span class="nav-text">Print Products</span></a>
+        <a href="#posters-section" class="nav-link" data-section="posters-section"><span></span><span class="nav-text">Illustration</span></a>
+        <a href="#about" class="nav-link" data-section="about"><span></span><span class="nav-text">About</span></a>
+    </nav>
+
+    <main id="home-section" class="portfolio-container">
         <div class="landing-image-wrapper">
             <img src="images/main.png" alt="메인 포트폴리오 일러스트" class="main-illustration">
             <img src="images/portfolio.png" alt="포트폴리오 제목" class="portfolio-text">
@@ -22,8 +35,8 @@
     <!-- =============================================== -->
     <!-- Content / Index Page Section                  -->
     <!-- =============================================== -->
-    <section class="content-section">
-        <h2 class="content-title">Content</h2>
+    <section id="content-section" class="content-section">
+        <h2 class="content-title">Contents</h2>
         <div class="content-wrapper">
             <!-- Left Column: Introduction -->
             <div class="intro-container">
@@ -250,10 +263,9 @@
             <div class="footer-content">
                 <h3>CONTACT</h3>
                 <div class="contact-info">
-                    <div class="contact-item">📧 email@example.com</div>
-                    <div class="contact-item">📱 010-1234-5678</div>
-                    <div class="contact-item">💼 LinkedIn</div>
-                    <div class="contact-item">🎨 Behance</div>
+                    <a href="mailto:seonguk0460@naver.com" class="contact-item">📧 seonguk0460@naver.com</a>
+                    <a href="tel:010-1234-5678" class="contact-item">📱 010-1234-5678</a>
+                    <a href="https://www.instagram.com/seonguk12/" target="_blank" rel="noopener noreferrer" class="contact-item">🎨 Instagram</a>
                 </div>
                 <p>&copy; 2025 Creative Portfolio. All rights reserved.</p>
             </div>
@@ -350,7 +362,7 @@
             .from(".skill-icons img:nth-child(3)", { duration: 0.5, y: 50, autoAlpha: 0, x: "-10%", y: "-40%", rotation: 15 }, "<0.2")
             .from(".skill-icons img:nth-child(4)", { duration: 0.5, y: 50, autoAlpha: 0, x: "-20%", y: "30%", rotation: -10 }, "<0.2")
             // 5. 오른쪽 카테고리 아이템들이 아래에서 위로 순차적으로 나타남
-            .from(".category-item", { duration: 0.6, y: 50, autoAlpha: 0, stagger: 0.2 }, "<");
+            .from(".category-item", { duration: 0.6, y: 50, stagger: 0.2 }, "<");
 
         // --- 카테고리 링크 부드러운 스크롤 처리 ---
         document.querySelectorAll('a.category-item').forEach(anchor => {
@@ -480,6 +492,36 @@
         postersTl.from(".posters-left-col > *", { duration: 0.8, y: 50, autoAlpha: 0, stagger: 0.2, ease: "power2.out" })
                  .from(".posters-right-col .posters-image-col", { duration: 1, y: 80, autoAlpha: 0, stagger: 0.2, ease: "power3.out" }, "<0.3");
 
+        // --- 6. 사이드 네비게이션 로직 ---
+        const navLinks = gsap.utils.toArray('.side-nav .nav-link');
+        const sections = gsap.utils.toArray('.side-nav .nav-link').map(link => {
+            const sectionId = link.getAttribute('href');
+            return document.querySelector(sectionId);
+        });
+
+        // 네비게이션 링크 클릭 시 부드럽게 스크롤
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                lenis.scrollTo(targetId, { duration: 1.5, ease: 'power2.inOut' });
+            });
+        });
+
+        // 스크롤에 따라 활성 링크 업데이트
+        sections.forEach((section, i) => {
+            ScrollTrigger.create({
+                trigger: section,
+                start: "top center",
+                end: "bottom center",
+                onToggle: self => {
+                    if (self.isActive) {
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        navLinks[i].classList.add('active');
+                    }
+                }
+            });
+        });
         // Posters 섹션 배경 라인 이미지 패럴랙스 효과
         gsap.to(".project-section-posters", {
             backgroundPosition: 
@@ -520,8 +562,8 @@
         }
         
         // Use Lenis for smooth scroll to top
-        scrollTopBtn.addEventListener('click', function () {
-            lenis.scrollTo(0, { duration: 1.5, ease: 'power2.inOut' });
+        scrollTopBtn.addEventListener('click', function() {
+            lenis.scrollTo('#content-section', { duration: 1.5, ease: 'power2.inOut' });
         });
         
         // Listen to Lenis scroll event instead of window.scroll

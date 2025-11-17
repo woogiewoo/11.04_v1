@@ -104,6 +104,80 @@ body {
 }
 
 /* =============================================== */
+/* Side Navigation Bar                           */
+/* =============================================== */
+.side-nav {
+    position: fixed;
+    top: 50%;
+    left: 40px;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* 항목들을 균등하게 분배합니다. */
+    height: 250px; /* 네비게이션 전체 영역의 높이를 고정합니다. 이 값을 조절하여 점들의 간격을 제어할 수 있습니다. */
+}
+
+.side-nav::before {
+    content: '';
+    position: absolute;
+    left: 5px; /* 점의 중앙에 오도록 1px 이동 */
+    /* top과 bottom 값을 조절하여 바의 길이를 줄입니다. */
+    top: 10px; /* 위에서 10px 떨어진 곳에서 바 시작 */
+    bottom: 10px; /* 아래에서 10px 떨어진 곳에서 바 종료 */
+    width: 2px;
+    background-color: rgba(139, 111, 71, 0.3);
+    z-index: -1;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #8b6f47;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link span:first-child {
+    position: absolute; /* 위치 기준을 .nav-link로 변경 */
+    left: 6px; /* 세로 바와 동일한 위치로 설정 */
+    width: 10px;
+    height: 10px;
+    background-color: rgba(139, 111, 71, 1.0);
+    transform: translateX(-50%); /* 자신의 너비 절반만큼 왼쪽으로 이동하여 중앙 정렬 */
+    border-radius: 50%;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-text {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 14px;
+    font-weight: 500; 
+    margin-left: 25px; /* 점과 겹치지 않도록 왼쪽 여백 증가 */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+.nav-link:hover .nav-text,
+.nav-link.active .nav-text {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.nav-link.active span:first-child {
+    background-color: #d4a15a;
+    transform: translateX(-50%) scale(1.4); /* 중앙 정렬 유지하며 확대 */
+    border: 1px solid #fff;
+}
+/* =============================================== */
 /* Content / Index Page Section                  */
 /* =============================================== */
 .content-section {
@@ -245,6 +319,16 @@ body {
     color: inherit;
 }
 
+/* 카테고리 이미지 전환 효과 설정 */
+.category-item .category-image {
+    transition: transform 0.3s ease;
+}
+
+/* 마우스를 올렸을 때 이미지를 살짝 확대 */
+.category-item:hover .category-image {
+    transform: scale(1.05);
+}
+
 .category-circle {
     width: clamp(120px, 15vw, 220px); /* 카테고리 원 크기 조절 */
     height: clamp(120px, 15vw, 220px);
@@ -278,8 +362,7 @@ body {
 
 .category-label {
     margin-top: clamp(10px, 2vh, 20px);
-    padding-top: clamp(1px, 0.3vh, 4px); /* 상단 여백 */
-    padding-bottom: clamp(1px, 0.3vh, 4px); /* 하단 여백 */
+    padding: clamp(2px, 0.4vh, 5px) 0; /* 상하 패딩으로 높이 제어 */
     width: clamp(180px, 15vw, 240px); /* 반응형 너비를 설정하여 길이를 통일합니다. */
     background-color: #edecda; /* 요청에 따라 배경색 변경 */
     border-radius: 20px;
@@ -288,7 +371,11 @@ body {
     font-weight: 600;
     color: #403F60;
     text-transform: capitalize; /* 첫 글자를 대문자로 변경 */
-    text-align: center; /* 텍스트를 중앙에 정렬합니다. */
+    /* Flexbox를 사용하여 텍스트를 완벽하게 중앙 정렬합니다. */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1; /* 텍스트 자체의 줄 간격을 초기화하여 정렬 정확도 향상 */
 }
 
 /* --- Responsive Design --- */
@@ -351,8 +438,7 @@ body {
 }
 
 .uxui-tag {
-    display: inline-block;
-    padding: clamp(1px, 0.2vh, 4px) clamp(40px, 5vw, 60px); /* 상하 패딩을 더 줄이고, 좌우 패딩을 더 늘립니다. */
+    padding: clamp(4px, 0.8vh, 8px) clamp(40px, 5vw, 60px); /* 상하 패딩 조정 */
     border-radius: 50px;
     border: 1px solid #EDEDED;
     color: #754A9C;
@@ -360,6 +446,11 @@ body {
     font-weight: 600;
     margin-top: 15px;
     text-transform: uppercase;
+    /* Flexbox를 사용하여 텍스트를 완벽하게 중앙 정렬합니다. */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1; /* 텍스트 자체의 줄 간격을 초기화하여 정렬 정확도 향상 */
 }
 
 .uxui-content-layout {
@@ -532,16 +623,20 @@ body {
 
 .oimu-tag {
     /* 기존 uxui-tag 스타일 재활용 */
-    display: inline-block;
-    padding: clamp(1px, 0.2vh, 4px) clamp(40px, 5vw, 60px);
+    padding: clamp(4px, 0.8vh, 8px) clamp(40px, 5vw, 60px); /* 상하 패딩 조정 */
     border-radius: 50px;
     border: 1px solid #FFFFFF;
     color: #D15B43;
     font-size: clamp(0.9rem, 1.5vw, 1.2rem);
-    font-weight: 600; 
+    font-weight: 600;
     margin-top: 5px;
     margin-bottom: 25px;
     text-transform: uppercase;
+    /* Flexbox를 사용하여 텍스트를 완벽하게 중앙 정렬합니다. */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1; /* 텍스트 자체의 줄 간격을 초기화하여 정렬 정확도 향상 */
 }
 
 .oimu-text-image {
@@ -621,8 +716,7 @@ body {
 
 .knotted-tag {
     /* 기존 태그 스타일 재활용 */
-    display: inline-block;
-    padding: clamp(1px, 0.2vh, 4px) clamp(40px, 5vw, 60px);
+    padding: clamp(4px, 0.8vh, 8px) clamp(40px, 5vw, 60px); /* 상하 패딩 조정 */
     border-radius: 50px;
     border: 1px solid #ffffff;
     color: #D85050;
@@ -631,10 +725,15 @@ body {
     margin-top: 15px;
     margin-bottom: 25px;
     text-transform: capitalize; /* 'Detail page' */
+    /* Flexbox를 사용하여 텍스트를 완벽하게 중앙 정렬합니다. */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1; /* 텍스트 자체의 줄 간격을 초기화하여 정렬 정확도 향상 */
 }
 
 .knotted-text-image {
-    width: 50%;
+    width: 60%;
     height: auto;
     display: block;
 }
@@ -797,8 +896,7 @@ knotted_ball3.svg (초록)
 
 .mikkot-tag {
     /* 기존 태그 스타일 재활용 */
-    display: inline-block;
-    padding: clamp(1px, 0.2vh, 4px) clamp(40px, 5vw, 60px);
+    padding: clamp(4px, 0.8vh, 8px) clamp(40px, 5vw, 60px); /* 상하 패딩 조정 */
     border-radius: 50px;
     border: 1px solid #ffffff; /* Requested color */
     color: #4CA189; /* Requested color */
@@ -807,6 +905,11 @@ knotted_ball3.svg (초록)
     margin-top: 15px;
     margin-bottom: 25px;
     text-transform: capitalize; /* 'Detail page' */
+    /* Flexbox를 사용하여 텍스트를 완벽하게 중앙 정렬합니다. */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1; /* 텍스트 자체의 줄 간격을 초기화하여 정렬 정확도 향상 */
 }
 
 .mikkot-text-image {
@@ -884,8 +987,7 @@ knotted_ball3.svg (초록)
 
 .fm-tag {
     /* 기존 태그 스타일 재활용 */
-    display: inline-block;
-    padding: clamp(1px, 0.2vh, 4px) clamp(40px, 5vw, 60px);
+    padding: clamp(4px, 0.8vh, 8px) clamp(40px, 5vw, 60px); /* 상하 패딩 조정 */
     border-radius: 50px;
     border: 1px solid #CFCFCF; /* Requested color */
     color: #070707; /* Requested color */
@@ -894,6 +996,11 @@ knotted_ball3.svg (초록)
     margin-top: 15px;
     margin-bottom: 25px;
     text-transform: capitalize; /* 'Prints' */
+    /* Flexbox를 사용하여 텍스트를 완벽하게 중앙 정렬합니다. */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1; /* 텍스트 자체의 줄 간격을 초기화하여 정렬 정확도 향상 */
 }
 
 .fm-main-image {
@@ -1004,16 +1111,20 @@ knotted_ball3.svg (초록)
 
 .posters-tag {
     /* 기존 태그 스타일 재활용 */
-    display: inline-block;
-    padding: clamp(1px, 0.2vh, 4px) clamp(40px, 5vw, 60px);
+    padding: clamp(4px, 0.8vh, 8px) clamp(40px, 5vw, 60px); /* 상하 패딩 조정 */
     border-radius: 50px;
-    border: 2px solid #FEFEFE; /* Requested color */
+    border: 1px solid #FEFEFE; /* Requested color */
     color: #FEFEFE; /* Requested color */
     font-size: clamp(0.9rem, 1.5vw, 1.2rem);
     font-weight: 600;
     margin-top: 5px;
     margin-bottom: 25px;
     text-transform: capitalize; /* 'Prints' */
+    /* Flexbox를 사용하여 텍스트를 완벽하게 중앙 정렬합니다. */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1; /* 텍스트 자체의 줄 간격을 초기화하여 정렬 정확도 향상 */
 }
 
 /* --- Right Column: 3-Column Image Grid --- */
@@ -1188,7 +1299,7 @@ knotted_ball3.svg (초록)
 .footer {
     background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
     color: white;
-    padding: 4rem 0 2rem;
+    padding: 4rem 0 6rem; /* 하단 여백을 늘렸습니다 */
     text-align: center;
     position: relative;
 }
@@ -1218,6 +1329,10 @@ knotted_ball3.svg (초록)
     padding: 1rem 2rem;
     border-radius: 25px;
     backdrop-filter: blur(10px);
+    /* 링크 밑줄 제거 및 색상 상속 */
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 /* =============================================== */
@@ -1231,8 +1346,8 @@ knotted_ball3.svg (초록)
     width: 60px;
     height: 60px;
     border: none;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.32);
+    border-radius: 50%; 
+    background: rgba(255, 255, 255, 0.6); /* 배경 불투명도를 높여서 더 잘 보이게 수정 */
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -1251,7 +1366,7 @@ knotted_ball3.svg (초록)
     pointer-events: auto;
 }
 #scrollTopBtn:hover {
-    background: rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.8); /* 호버 시 배경 불투명도도 함께 높임 */
     box-shadow: 0 12px 36px 0 rgba(139, 111, 71, 0.18);
     transform: translateY(-6px) scale(1.08);
 }
