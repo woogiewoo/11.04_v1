@@ -470,7 +470,7 @@ body {
 }
 
 .uxui-text-image {
-    width: 70%; /* 부모 요소 너비의 80%로 설정하여 크기를 줄입니다. */
+    width: 65%; /* 부모 요소 너비의 80%로 설정하여 크기를 줄입니다. */
     height: auto; /* 이미지 비율을 유지합니다. */
     align-self: flex-start; /* 왼쪽 정렬을 유지합니다. */
 }
@@ -505,10 +505,10 @@ body {
     /* --- 크기 및 위치 조절 예시 --- */
     /* 부모 컨테이너보다 크게 설정하여 이미지를 키웁니다. (예: 120%) */
     width: 120%; 
-    /* 위치를 조정합니다. (예: 오른쪽으로 5vw, 위로 16vw 이동) */
-    transform: translateX(1.8vw) translateY(-13.1vw);
+    /* 위치를 조정합니다. (예: 오른쪽으로 1.8vw, 위로 12vw 이동) */
+    transform: translateX(1.8vw) translateY(-12vw);
     /* transform으로 인해 생긴 하단 빈 공간을 음수 마진으로 제거합니다. (translateY 값과 맞추는 것이 좋습니다) */
-    margin-bottom: -16vw;
+    margin-bottom: -14vw; /* translateY 조정에 맞춰 margin-bottom 값도 수정합니다. */
 }
 .uxui-main-image img {
     width: 100%;
@@ -1332,7 +1332,28 @@ knotted_ball3.svg (초록)
     /* 링크 밑줄 제거 및 색상 상속 */
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
     transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.contact-item:hover {
+    transform: translateY(-5px) scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* 아이콘만 있는 contact-item을 위한 스타일 */
+.contact-item-icon {
+    padding: 0.8rem; /* 아이콘에 맞게 패딩을 정사각형에 가깝게 조정 */
+    width: 28px; /* 아이콘 크기에 맞춰 너비 고정 */
+    height: 28px; /* 아이콘 크기에 맞춰 높이 고정 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-item-icon img {
+    width: 28px; /* 아이콘 이미지 크기 */
+    height: auto;
 }
 
 /* =============================================== */
