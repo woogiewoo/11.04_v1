@@ -4,8 +4,8 @@
 /* Hilmar 폰트 선언 (실제 폰트 파일 경로로 수정 필요) */
 @font-face {
     font-family: 'Hilmar Regular';
-    src: url('assets/fonts/Hilmar-Regular.woff2') format('woff2'),
-         url('assets/fonts/Hilmar-Regular.woff') format('woff');
+    src: url('/assets/fonts/Hilmar-Regular.woff2') format('woff2'),
+         url('/assets/fonts/Hilmar-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -1304,9 +1304,9 @@ knotted_ball3.svg (초록)
     position: relative;
 }
 
-.footer-content {
-    /* Opacity/Transform will be controlled by GSAP */
-}
+/* .footer-content {
+    Opacity/Transform will be controlled by GSAP
+} */
 
 .footer h3 {
     /* Manually adding title style as .section-title is not used in footer HTML */
