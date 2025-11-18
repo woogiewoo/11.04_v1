@@ -272,9 +272,6 @@
         </div>
     </footer>
 
-    <!-- 날아다니는 유령 이미지 -->
-    <img src="images/ghost_fly.png" alt="Flying Ghost" id="flying-ghost">
-    
     <button id="scrollTopBtn" aria-label="맨 위로 이동">
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M14 20V8" stroke="#8b6f47" stroke-width="2.5" stroke-linecap="round"/>
@@ -594,60 +591,6 @@
                 .then(() => alert('연락처가 복사되었습니다!'));
         });
 
-        // --- 8. 랜덤 유령 애니메이션 ---
-        let isGhostFlying = false; // 유령이 현재 날아가는 중인지 확인하는 플래그
-
-        function flyGhost() {
-            if (isGhostFlying) return; // 이미 날아가는 중이면 실행하지 않음
-
-            isGhostFlying = true;
-
-            // 유령의 시작 높이를 화면의 10% ~ 80% 사이에서 랜덤으로 설정
-            const randomY = gsap.utils.random(10, 80) + 'vh';
-            
-            // GSAP 타임라인으로 애니메이션 정의
-            const ghostTl = gsap.timeline({
-                onComplete: () => {
-                    isGhostFlying = false; // 애니메이션이 끝나면 플래그를 false로 변경
-                }
-            });
-
-            ghostTl
-                // 1. 유령을 화면 왼쪽 밖, 랜덤 높이에 배치하고 보이게 만듦
-                .set("#flying-ghost", { y: randomY, x: -150, autoAlpha: 1, rotation: -15 })
-                // 2. 화면 오른쪽 끝으로 이동시키면서 살짝 흔들리는 효과 추가
-                .to("#flying-ghost", { 
-                    x: "100vw", // 화면 너머로 이동
-                    duration: gsap.utils.random(4, 7), // 4초에서 7초 사이의 랜덤한 속도
-                    ease: "power1.inOut",
-                    // yoyo와 repeat를 이용해 위아래로 흔들리는 효과
-                    y: "+=" + gsap.utils.random(20, 50),
-                    rotation: 15,
-                    yoyo: true,
-                    repeat: 5
-                })
-                // 3. 애니메이션이 끝나면 다시 숨김
-                .set("#flying-ghost", { autoAlpha: 0 });
-        }
-
-        // --- 8. 랜덤 유령 애니메이션 (수정된 버전) ---
-        // 각 섹션을 지날 때마다 랜덤하게 유령을 출현시킵니다.
-        const sectionsForGhost = gsap.utils.toArray('section');
-
-        sectionsForGhost.forEach(section => {
-            ScrollTrigger.create({
-                trigger: section,
-                start: "top center", // 섹션의 상단이 뷰포트 중앙에 왔을 때
-                onEnter: () => { // 스크롤 다운하며 진입할 때
-                    // 20% 확률로 유령 출현 (확률 조절 가능)
-                    if (Math.random() < 0.2) flyGhost();
-                },
-                onEnterBack: () => { // 스크롤 업하며 진입할 때
-                    // 20% 확률로 유령 출현
-                    if (Math.random() < 0.2) flyGhost();
-                }
-            });
-        });
     </script>
 </body>
 </html>

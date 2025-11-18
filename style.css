@@ -421,8 +421,8 @@ body {
 
 .uxui-header {
     width: 100%;
-    max-width: 1600px;
-    margin-bottom: clamp(40px, 5vh, 70px);
+    max-width: 1600px; /* 최대 너비 유지 */
+    margin-bottom: clamp(20px, 3vh, 35px); /* 태그 아래 여백을 줄이기 위해 값을 조정합니다. */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -723,7 +723,7 @@ body {
     font-size: clamp(0.9rem, 1.5vw, 1.2rem);
     font-weight: 600;
     margin-top: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     text-transform: capitalize; /* 'Detail page' */
     /* Flexbox를 사용하여 텍스트를 완벽하게 중앙 정렬합니다. */
     display: inline-flex;
@@ -1066,7 +1066,7 @@ knotted_ball3.svg (초록)
         url('images/poster_line_1.svg'), 
         url('images/poster_line_2.svg'), 
         url('images/poster_line_3.svg');
-    background-size: 20%, 40%, 30%; /* 각 이미지의 크기 (예시) */
+    background-size: 23%, 38%, 30%; /* 각 이미지의 크기 (예시) */
     background-position: 
         left 23vw top -17vh,       /* 1번 이미지: 왼쪽에서 5vw, 위에서 10vh 위치 */
         left 11vw top 77vh,                  /* 2번 이미지: 정중앙 */
@@ -1103,7 +1103,7 @@ knotted_ball3.svg (초록)
 
 .posters-title {
     font-family: 'Hilmar Regular', sans-serif; 
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-size: clamp(3rem, 7vw, 6rem);
     color: #FEFEFE; /* Requested color */
     margin-bottom: 5px;
     line-height: 1.1;
@@ -1402,20 +1402,6 @@ knotted_ball3.svg (초록)
 }
 #scrollTopBtn:hover svg path {
     stroke: #d4a15a;
-}
-
-/* =============================================== */
-/* Flying Ghost Animation                        */
-/* =============================================== */
-#flying-ghost {
-    position: fixed;
-    z-index: 999; /* 다른 요소들 위에 보이도록 설정 */
-    width: 120px; /* 유령 이미지 크기 (조절 가능) */
-    height: auto;
-    pointer-events: none; /* 유령이 클릭 이벤트를 방해하지 않도록 설정 */
-    will-change: transform, opacity; /* 애니메이션 성능 최적화 */
-    opacity: 0; /* 기본적으로 숨김 */
-    visibility: hidden; /* 기본적으로 숨김 */
 }
 
 /* Responsive styles from style2.css for new sections */
